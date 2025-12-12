@@ -27,17 +27,17 @@ Using pipe characters (`|`) as separators is also supported.
 How to build
 ============
 
-In order to build this project, you need to have 2 tools installed on your computer: yarn (package manager), and gulp (build system). Please find below the link to their respective documentation:
-* [Yarn installation documentation](https://yarnpkg.com/lang/en/docs/install/)
+In order to build this project, you need to have Node.js (version 20 or later) and npm (package manager) installed on your computer. Please find below the link to their respective documentation:
+* [Node.js installation documentation](https://nodejs.org/)
 * [Gulp Getting Started wiki page](https://github.com/gulpjs/gulp/tree/master/docs/getting-started)
 
-To download the dependancies, run on the repository's folder:
+To download the dependencies, run in the repository's folder:
 
-> yarn install
+> npm install
 
 Then to build the project, just type:
 
-> gulp
+> npx gulp
 
 The files will be copied on the 'dist' directory.
 

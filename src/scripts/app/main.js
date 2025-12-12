@@ -49,7 +49,7 @@ define(
             input = $('#fix-message-input');
 
         // Listen for changes in the textbox
-        input.bind('input propertychange', function()
+        input.on('input', function()
         {
             var messageText = input.val();
             parseText(messageText);
