@@ -1,6 +1,7 @@
-import { FileText, Info, ChevronLeft, ChevronRight, Github } from 'lucide-react'
+import { FileText, Info, ChevronLeft, ChevronRight, Github, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSidebar } from '@/context/SidebarContext'
+import { useNavigation } from '@/context/NavigationContext'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -9,8 +10,8 @@ import { Logo } from './Logo'
 interface NavItem {
   label: string
   icon: React.ReactNode
+  page?: 'decoder' | 'features' | 'about'
   href?: string
-  active?: boolean
   external?: boolean
 }
 
@@ -18,11 +19,17 @@ const navItems: NavItem[] = [
   {
     label: 'Decoder',
     icon: <FileText className="h-5 w-5" />,
-    active: true,
+    page: 'decoder',
+  },
+  {
+    label: 'Features',
+    icon: <Sparkles className="h-5 w-5" />,
+    page: 'features',
   },
   {
     label: 'About',
     icon: <Info className="h-5 w-5" />,
+    page: 'about',
   },
 ]
 
@@ -30,20 +37,41 @@ const externalLinks: NavItem[] = [
   {
     label: 'GitHub',
     icon: <Github className="h-5 w-5" />,
-    href: 'https://github.com/drewnoakes/fix-decoder',
+    href: 'https://sunotech.github.io/fix-decoder',
     external: true,
   },
 ]
 
 export function Sidebar() {
   const { isCollapsed, toggleCollapsed } = useSidebar()
+  const { currentPage, setCurrentPage } = useNavigation()
 
   return (
     <div className="flex h-full flex-col">
+      {/* Toggle Button - Top */}
+      <div className="flex items-center justify-end p-2 border-b border-sidebar-border">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={toggleCollapsed}
+          className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+          title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {isCollapsed ? (
+            <ChevronRight className="h-4 w-4" />
+          ) : (
+            <>
+              <ChevronLeft className="h-4 w-4" />
+              <span className="ml-1 text-xs">Hide</span>
+            </>
+          )}
+        </Button>
+      </div>
+
       {/* Logo */}
       <div
         className={cn(
-          'flex h-16 items-center border-b px-4',
+          'flex h-14 items-center border-b border-sidebar-border px-4',
           isCollapsed && 'justify-center px-2'
         )}
       >
@@ -56,9 +84,10 @@ export function Sidebar() {
           {navItems.map((item) => (
             <button
               key={item.label}
+              onClick={() => item.page && setCurrentPage(item.page)}
               className={cn(
                 'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                item.active
+                currentPage === item.page
                   ? 'bg-sidebar-accent text-sidebar-accent-foreground'
                   : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
                 isCollapsed && 'justify-center px-2'
@@ -70,7 +99,7 @@ export function Sidebar() {
           ))}
         </nav>
 
-        <Separator className="my-4" />
+        <Separator className="my-4 bg-sidebar-border" />
 
         <nav className="space-y-1 px-2">
           {externalLinks.map((item) => (
@@ -92,24 +121,6 @@ export function Sidebar() {
         </nav>
       </ScrollArea>
 
-      {/* Collapse Toggle */}
-      <div className="border-t p-2">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleCollapsed}
-          className={cn(
-            'w-full text-sidebar-foreground hover:bg-sidebar-accent',
-            isCollapsed && 'justify-center'
-          )}
-        >
-          {isCollapsed ? (
-            <ChevronRight className="h-5 w-5" />
-          ) : (
-            <ChevronLeft className="h-5 w-5" />
-          )}
-        </Button>
-      </div>
     </div>
   )
 }

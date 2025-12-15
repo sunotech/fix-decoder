@@ -22,9 +22,13 @@ export function MessageInput({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Paste your FIX message here..."
+        spellCheck={false}
         className={cn(
-          'min-h-[100px] resize-y font-mono text-xs',
-          'placeholder:text-muted-foreground/60'
+          'min-h-[200px] resize-y',
+          'font-mono text-[12px] leading-relaxed',
+          'bg-white/95 text-zinc-800 border-orange-300',
+          'placeholder:text-zinc-400',
+          'focus-visible:ring-orange-400'
         )}
       />
       {hasContent && (
@@ -32,7 +36,7 @@ export function MessageInput({
           variant="ghost"
           size="icon"
           onClick={onClear}
-          className="absolute right-2 top-2 h-8 w-8 text-muted-foreground hover:text-foreground"
+          className="absolute right-2 top-2 h-6 w-6 text-zinc-400 hover:text-zinc-600 hover:bg-orange-100"
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Clear input</span>

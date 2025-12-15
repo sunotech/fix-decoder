@@ -25,7 +25,7 @@ const SAMPLE_MESSAGES = [
 export function SampleMessages({ onSelect }: SampleMessagesProps) {
   return (
     <div className="flex flex-wrap gap-2">
-      <span className="text-sm text-muted-foreground self-center">
+      <span className="text-xs text-orange-100 self-center">
         Try a sample:
       </span>
       {SAMPLE_MESSAGES.map((sample) => (
@@ -34,6 +34,7 @@ export function SampleMessages({ onSelect }: SampleMessagesProps) {
           variant="outline"
           size="sm"
           onClick={() => onSelect(sample.message)}
+          className="text-xs bg-orange-600 border-orange-700 text-white hover:bg-orange-700 hover:text-white"
         >
           {sample.label}
         </Button>

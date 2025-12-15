@@ -7,30 +7,18 @@ interface LogoProps {
 export function Logo({ collapsed }: LogoProps) {
   return (
     <div className="flex items-center gap-2">
-      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-5 w-5"
-        >
-          <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-          <polyline points="14 2 14 8 20 8" />
-          <line x1="16" y1="13" x2="8" y2="13" />
-          <line x1="16" y1="17" x2="8" y2="17" />
-          <line x1="10" y1="9" x2="8" y2="9" />
-        </svg>
-      </div>
+      <img
+        src="/sun_fix_decoder_icon.png"
+        alt="FIX Decoder"
+        className="h-8 w-8"
+      />
       <span
         className={cn(
           'font-semibold text-sidebar-foreground transition-opacity',
           collapsed && 'hidden'
         )}
       >
-        FIX Decoder
+        Sun's FIX Decoder
       </span>
     </div>
   )

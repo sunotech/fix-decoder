@@ -1,0 +1,43 @@
+{
+  "customTags": [
+    {
+      "provider": "AlgoProvider_A",
+      "tag": 9483,
+      "name": "ALGO_STRATEGY",
+      "type": "STRING",
+      "values": {
+        "VWAP": "Volume Weighted Average Price",
+        "TWAP": "Time Weighted Average Price",
+        "POV": "Percentage of Volume"
+      }
+    },
+    {
+      "provider": "AlgoProvider_A",
+      "tag": 9484,
+      "name": "URGENCY_LEVEL",
+      "type": "INT",
+      "values": {
+        "1": "Low",
+        "2": "Medium",
+        "3": "High"
+      }
+    },
+    {
+      "provider": "Broker_B",
+      "tag": 9483,
+      "name": "INTERNAL_ROUTE_ID",
+      "type": "STRING"
+    },
+    {
+      "provider": "Broker_B",
+      "tag": 9500,
+      "name": "CLIENT_ORDER_CAPACITY",
+      "type": "CHAR",
+      "values": {
+        "A": "Agency",
+        "P": "Principal",
+        "R": "Riskless Principal"
+      }
+    }
+  ]
+}

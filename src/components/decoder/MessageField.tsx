@@ -1,13 +1,15 @@
 import { cn } from '@/lib/utils'
+import { highlightMatch } from '@/hooks/useFieldSearch'
 import type { ParsedField } from '@/types/fix'
 
 interface MessageFieldProps {
   field: ParsedField
   showDataType: boolean
   isEven: boolean
+  searchQuery?: string
 }
 
-export function MessageField({ field, showDataType, isEven }: MessageFieldProps) {
+export function MessageField({ field, showDataType, isEven, searchQuery = '' }: MessageFieldProps) {
   const isSystemField = field.classes.includes('system-field')
   const isHeaderField = field.classes.includes('header-field')
   const isDeprecatedField = field.classes.includes('deprecated-field')
@@ -29,28 +31,30 @@ export function MessageField({ field, showDataType, isEven }: MessageFieldProps)
         isInvalid && 'bg-red-100 dark:bg-red-950/30'
       )}
     >
-      <td className="py-1 pr-3 font-mono text-xs">
+      <td className="py-1 pr-4 font-mono text-xs w-14">
         <a
           href={dictionaryUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="text-primary hover:underline"
         >
-          {field.fieldId}
+          {highlightMatch(field.fieldId, searchQuery)}
         </a>
       </td>
-      <td className="py-1 pr-3 text-xs">
-        {field.field?.name || (
+      <td className="py-1 pr-4 text-xs w-44">
+        {field.field?.name ? (
+          highlightMatch(field.field.name, searchQuery)
+        ) : (
           <span className="italic text-muted-foreground">Unknown</span>
         )}
       </td>
       {showDataType && (
-        <td className="py-1 pr-3 font-mono text-xs text-muted-foreground">
-          {field.field?.type || '-'}
+        <td className="py-1 pr-4 font-mono text-xs text-muted-foreground w-28">
+          {field.field?.type ? highlightMatch(field.field.type, searchQuery) : '-'}
         </td>
       )}
       <td className="py-1 text-xs">
-        <span className="font-mono">{field.value}</span>
+        <span className="font-mono">{highlightMatch(field.value, searchQuery)}</span>
         {field.decodedValue && (
           <span
             className={cn(
@@ -59,7 +63,7 @@ export function MessageField({ field, showDataType, isEven }: MessageFieldProps)
               isInvalid && 'text-red-600 dark:text-red-400'
             )}
           >
-            ({field.decodedValue})
+            ({highlightMatch(field.decodedValue, searchQuery)})
           </span>
         )}
       </td>

@@ -1,13 +1,17 @@
 import { useState, useMemo, useCallback } from 'react'
 import { fixParser } from '@/lib/fix-parser'
+import { useCustomTags } from '@/context/CustomTagsContext'
 
 export function useFixParser() {
   const [input, setInput] = useState('')
+  const { getCustomFieldDefinition } = useCustomTags()
 
   const messages = useMemo(() => {
     if (!input.trim()) return []
 
-    const parsed = fixParser.parse(input)
+    const parsed = fixParser.parse(input, {
+      getCustomField: getCustomFieldDefinition,
+    })
     const compIds: Record<string, boolean> = {}
 
     // Track sender/targets for side detection
@@ -25,7 +29,7 @@ export function useFixParser() {
     }
 
     return parsed
-  }, [input])
+  }, [input, getCustomFieldDefinition])
 
   const clear = useCallback(() => setInput(''), [])
 

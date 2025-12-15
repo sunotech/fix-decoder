@@ -25,15 +25,14 @@ export function MessageCard({ message, index, showDataType }: MessageCardProps) 
         'flex',
         isLeft && 'justify-start',
         isRight && 'justify-end',
-        !isLeft && !isRight && 'justify-center'
+        !isLeft && !isRight && 'justify-start'
       )}
     >
       <Card
         className={cn(
-          'transition-all w-full max-w-[85%]',
+          'transition-all w-[85%]',
           isLeft && 'border-l-4 border-l-blue-500 bg-blue-50/50 dark:bg-blue-950/20',
-          isRight && 'border-r-4 border-r-green-500 bg-green-50/50 dark:bg-green-950/20',
-          !isLeft && !isRight && 'max-w-full'
+          isRight && 'border-r-4 border-r-green-500 bg-green-50/50 dark:bg-green-950/20'
         )}
       >
         <CardHeader className="pb-2">

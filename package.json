@@ -1,6 +1,6 @@
 {
-  "name": "fix-decoder",
-  "description": "Unravels FIX messages into human readable tables",
+  "name": "suns-fix-decoder",
+  "description": "Sun's FIX Decoder - Unravels FIX messages into human readable tables",
   "license": "GPL-3.0+",
   "homepage": "https://drewnoakes.com/fix-decoder/",
   "bugs": "https://github.com/drewnoakes/fix-decoder/issues",
@@ -24,6 +24,7 @@
     "lucide-react": "^0.468.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
     "tailwind-merge": "^2.5.5"
   },
   "devDependencies": {

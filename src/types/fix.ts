@@ -6,6 +6,20 @@ export interface FieldDefinition {
   isRequired?: boolean
   deprecatedSince?: number
   allowOtherValues?: boolean
+  provider?: string // For custom tags: which provider defined this
+}
+
+// Custom FIX tag definition (user-provided)
+export interface CustomTag {
+  provider: string
+  tag: number
+  name: string
+  type: string
+  values?: Record<string, string>
+}
+
+export interface CustomTagsConfig {
+  customTags: CustomTag[]
 }
 
 export interface ParsedField {

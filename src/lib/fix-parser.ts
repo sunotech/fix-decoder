@@ -1,5 +1,5 @@
 import { fieldById, systemFieldIds } from './fix-data'
-import type { FixMessage, ParsedField } from '@/types/fix'
+import type { FixMessage, ParsedField, FieldDefinition } from '@/types/fix'
 
 const FIELD_IDS = {
   CHECKSUM: 10,
@@ -10,19 +10,39 @@ const FIELD_IDS = {
   TARGET_COMP_ID: 56,
 } as const
 
+export interface ParseOptions {
+  getCustomField?: (tagId: number) => FieldDefinition | null
+}
+
 export class FixParser {
-  parse(str: string): FixMessage[] {
-    // Create a sequence of fields
-    const regex = /([0-9]+)=([^|;\u0001]*)/g
+  // Normalize delimiters to SOH for consistent parsing
+  private normalizeDelimiters(str: string): string {
+    return str
+      // Replace ^A (text representation of SOH) first
+      .replace(/\^A/g, '\u0001')
+      // Replace common delimiters with SOH
+      .replace(/[|;^\t]/g, '\u0001')
+  }
+
+  parse(str: string, options?: ParseOptions): FixMessage[] {
+    const { getCustomField } = options || {}
+    // Normalize all delimiters to SOH
+    const normalizedStr = this.normalizeDelimiters(str)
+
+    // Create a sequence of fields - now only matching SOH as delimiter
+    const regex = /([0-9]+)=([^\u0001]*)/g
     const fields: ParsedField[] = []
     let result: RegExpExecArray | null
 
     let fixVersion = 0
 
-    while ((result = regex.exec(str)) !== null) {
+    while ((result = regex.exec(normalizedStr)) !== null) {
       const fieldId = parseInt(result[1])
       const value = result[2]
-      const field = fieldById[String(fieldId)] || null
+      // Look up field: first try standard FIX dictionary, then custom tags
+      const standardField = fieldById[String(fieldId)] || null
+      const customField = getCustomField?.(fieldId) || null
+      const field = standardField || customField
       const decodedValue = field?.values?.[value] || null
 
       if (fieldId === FIELD_IDS.BEGIN_STRING) {
