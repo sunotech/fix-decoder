@@ -78,16 +78,28 @@ export function AboutPage() {
             , a talented software developer who built the original FIX Message Decoder
             to help developers and financial professionals decode and visualize FIX protocol messages.
           </p>
-          <a
-            href="https://github.com/drewnoakes/fix-decoder"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground group"
-          >
-            <Github className="h-4 w-4" />
-            Original Repository
-            <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
-          </a>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="https://github.com/drewnoakes/fix-decoder"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground group"
+            >
+              <Github className="h-4 w-4" />
+              Original Repository
+              <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a
+              href="https://github.com/sunotech/fix-decoder"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground group"
+            >
+              <Github className="h-4 w-4" />
+              This Repository
+              <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
         </CardContent>
       </Card>
 
