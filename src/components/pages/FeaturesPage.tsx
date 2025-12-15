@@ -34,7 +34,7 @@ export function FeaturesPage() {
                 <div className="relative">
                     <div className="flex items-center gap-3 mb-4">
                         <img
-                            src="/sun_fix_decoder_icon.png"
+                            src={`${import.meta.env.BASE_URL}sun_fix_decoder_icon.png`}
                             alt="Sun's FIX Decoder"
                             className="h-12 w-12"
                         />

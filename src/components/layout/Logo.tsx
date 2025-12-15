@@ -8,7 +8,7 @@ export function Logo({ collapsed }: LogoProps) {
   return (
     <div className="flex items-center gap-2">
       <img
-        src="/sun_fix_decoder_icon.png"
+        src={`${import.meta.env.BASE_URL}sun_fix_decoder_icon.png`}
         alt="FIX Decoder"
         className="h-8 w-8"
       />
