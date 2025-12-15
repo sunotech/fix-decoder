@@ -30,7 +30,7 @@ I built this fork because I needed a few things that weren't in the original:
 
 ## Key Features
 
-*   **Privacy First**: Everything runs in your browser. Paste your logs, and they stay on your machine. Nothing gets sent to a server.
+*   **Privacy First**: Everything runs in your browser. Paste your FIX logs, and they stay on your machine. Nothing gets sent to a server.
 *   **Fast**: It handles large blocks of text without freezing up.
 *   **Validation**: It checks checksums for you, so you know if a message is corrupted.
 *   **Dark Mode**: More people prefer dark mode while I don't use it personally, please try and share your feedback.
