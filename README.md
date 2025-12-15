@@ -4,7 +4,7 @@
 
 If you work with FIX execution reports or logs every day, you just need a tool that works. This is a simple, modern fork of the original fix-decoder that makes reading raw FIX logs a lot easier on the eyes.
 
-![Dashboard Preview](./public/screenshot.png)
+![Dashboard Preview](./public/img/screenshot.png)
 
 ## What is this?
 
@@ -15,7 +15,18 @@ I built this fork because I needed a few things that weren't in the original:
 *   **In-place Search**: Search any FIX tag or value using the Search bar on decoder page, results are shown in real-time with highlight.
 *   **Custom Tags**: We all deal with custom venue tags. You can add them right in the browser so they show up with proper names instead of just numbers.
 *   **More delimiters supported**: Different FIX engines use different delimiters, this tool supports 6 different delimiters. 
-![Supported Delimiters](./public/img/supported_delimiters.png)
+
+
+| Delimiter     | Description                  | Status |
+|---------------|------------------------------|--------|
+| \x01 / \u0001 | SOH (official FIX delimiter) | ✅     |
+| \|            | Pipe                         | ✅     |
+| ;             | Semicolon                    | ✅     |
+| ^             | Caret                        | ✅     |
+| ^A            | Text representation of SOH   | ✅     |
+| \t            | Tab                          | ✅     |
+
+
 
 ## Key Features
 
