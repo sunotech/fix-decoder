@@ -1,21 +1,24 @@
 # Sun's FIX Decoder
 
-**A straightforward, client-side FIX message parser.**
+A browser-based visualization tool for parsing Financial Information eXchange (FIX) protocol logs. 
 
-If you work with FIX execution reports or logs every day, you just need a tool that works. This is a simple, modern fork of the original fix-decoder that makes reading raw FIX logs a lot easier on the eyes.
+**Live Demo:** [https://sunotech.github.io/fix-decoder/](https://sunotech.github.io/fix-decoder/)
+
+## 🚀 Overview
+
+Investigating production issues in high-frequency trading often involves scanning thousands of lines of raw FIX logs. This tool parses raw FIX messages and reconstructs the conversation flow into a readable, tabular format. 
+
+It is designed for Support Engineers, Developers, and QA testers who need to visualize complex Algo orders or standard DMA flows quickly.
 
 ![Dashboard Preview](./public/img/screenshot.png)
 
-## What is this?
+## ✨ Key Features
 
-It's a web tool that takes raw FIX strings and turns them into readable tables.
-
-I built this fork because I needed a few things that weren't in the original:
-*   **Better UI**: A cleaner interface that doesn't hurt to look at all day.
-*   **In-place Search**: Search any FIX tag or value using the Search bar on decoder page, results are shown in real-time with highlight.
-*   **Custom Tags**: We all deal with custom venue tags. You can add them right in the browser so they show up with proper names instead of just numbers.
-*   **More delimiters supported**: Different FIX engines use different delimiters, this tool supports 6 different delimiters. 
-
+* **Conversation Reconstruction:** Automatically aligns Sender and Receiver messages to visualize the flow.
+* **Custom Tags Support:** Define custom FIX tags (e.g., for specific OMS/EMS vendors or Algo strategies) to decode non-standard fields.
+* **In-Place Search:** Filter logs by OrderID, ClOrdID, or specific tag values instantly.
+* **Privacy Focused:** **100% Client-Side.** No log data is ever sent to a server. All parsing happens locally in your browser to ensure trading data confidentiality.
+* **Multiple delimiters supported**: Different FIX engines use different delimiters, this tool supports 6 different delimiters. 
 
 | Delimiter     | Description                  | Status |
 |---------------|------------------------------|--------|
@@ -26,48 +29,31 @@ I built this fork because I needed a few things that weren't in the original:
 | ^A            | Text representation of SOH   | ✅     |
 | \t            | Tab                          | ✅     |
 
-
-
-## Key Features
-
-*   **Privacy First**: Everything runs in your browser. Paste your FIX logs, and they stay on your machine. Nothing gets sent to a server.
-*   **Fast**: It handles large blocks of text without freezing up.
 *   **Validation**: It checks checksums for you, so you know if a message is corrupted.
 *   **Dark Mode**: More people prefer dark mode while I don't use it personally, please try and share your feedback.
 
-## Use It Now
 
-Go here: [https://sunotech.github.io/fix-decoder/](https://sunotech.github.io/fix-decoder/)
+## 🛠️ Usage
 
-## Running Locally
+1.  Open the [Live Tool](https://sunotech.github.io/fix-decoder/).
+2.  Paste your raw FIX log content into the input area.
+3.  (Optional) upload a custom dictionary if you are using proprietary tags.
+4.  View the parsed table below.
 
-If you prefer to run it on your own machine (or need it offline):
+## 💻 Running Locally
 
-1.  Clone it:
+If you prefer to host this within your internal network:
+
+1.  Clone the repository:
     ```bash
-    git clone https://github.com/sunotech/fix-decoder.git
-    cd fix-decoder
+    git clone [https://github.com/sunotech/fix-decoder.git](https://github.com/sunotech/fix-decoder.git)
     ```
+2.  Open `index.html` in any modern web browser.
 
-2.  Install & Run:
-    ```bash
-    npm install
-    npm run dev
-    ```
+## ⚖️ License & Credits
 
-That's it.
+* **License:** GPL-3.0
+* **Credits:** This project is a fork and enhancement of the excellent work by [Drew Noakes](https://github.com/drewnoakes/fix-decoder).
 
-## License
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+---
+*Created by Sun Yong. Open for contributions and suggestions.*
